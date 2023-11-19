@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectsController;
+use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Project;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
@@ -34,11 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('projectsList', function () {
-    return response()->json([
-        'status' => 'success',
-        'result' => Project::all()
-    ]);
-});
+
 
 require __DIR__ . '/auth.php';
