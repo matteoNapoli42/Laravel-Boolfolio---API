@@ -17,6 +17,7 @@
                     <th scope="col">THUMB</th>
                     <th scope="col">GITHUB</th>
                     <th>PROJECT LINK</th>
+                    <th>Project slug</th>
                     <th scope="col">TECHNOLOGIES</th>
                     <th scope="col">TYPES</th>
                 </tr>
@@ -38,6 +39,7 @@
                     
                     <td scope="col">{{$project->github}}</td>
                     <td scope="col">{{$project->project_link}}</td>
+                    <td scope="col">{{$project->slug}}</td>
                     
                     @if($project->technologies->isEmpty())
                     <td scope="col">N/D</td>

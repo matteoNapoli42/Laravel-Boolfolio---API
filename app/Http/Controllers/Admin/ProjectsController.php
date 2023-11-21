@@ -49,6 +49,7 @@ class ProjectsController extends Controller
         }
         $newProject = Project::create($validated);
         $newProject->technologies()->sync($request->tech);
+        $newProject->slug = Project::genSlug($newProject['title']);
         return to_route('projects.index')->with('message', 'Project created successfully');
     }
 
