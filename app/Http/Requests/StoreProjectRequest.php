@@ -41,6 +41,7 @@ class StoreProjectRequest extends FormRequest
             'github' => 'nullable',
             'type_id' => 'nullable',
             'project_link' => 'required',
+            'slug'
         ];
     }
 }

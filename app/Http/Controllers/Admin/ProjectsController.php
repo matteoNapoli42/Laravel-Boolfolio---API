@@ -43,13 +43,13 @@ class ProjectsController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $validated = $request->validated();
+        $validated['slug'] = Project::genSlug($validated['title']);
         if ($request->has('thumb')) {
             $file_path = Storage::put('thumbs', $request->thumb);
             $validated['thumb'] = $file_path;
         }
         $newProject = Project::create($validated);
         $newProject->technologies()->sync($request->tech);
-        $newProject->slug = Project::genSlug($newProject['title']);
         return to_route('projects.index')->with('message', 'Project created successfully');
     }
 
@@ -77,6 +77,7 @@ class ProjectsController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $validated = $request->validated();
+        $validated['slug'] = Project::genSlug($validated['title']);
         if ($request->has('thumb')) {
             if (!is_Null($project->thumb) && Storage::fileExists(($project->thumb))) {
                 Storage::delete($project->thumb);
